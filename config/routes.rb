@@ -1,9 +1,8 @@
 VishApp::Application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" } do
-  match '/auth/:provider' => 'omniauth_callbacks#twitter'
-  end
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" } 
 
-
+  match '/home' => 'home#new'
+#  resources :authentications
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -53,7 +52,7 @@ VishApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'authentications#index'
+   root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 
