@@ -1,2 +1,6 @@
-<h1>Welcome to my App</h1>
-<P>To move ahead <%= link_to "click here", new_user_session_path %></P>
+<h1>Welcome to Movie App</h1>
+<P>Enter to search</P>
+<%= form_tag ('/search') do %>
+  <%= text_field_tag "search_query" %>
+  <%= submit_tag "Search" %>
+<% end %>

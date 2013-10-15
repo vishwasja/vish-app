@@ -1,0 +1,10 @@
+<div><%= image_tag @movie['posters']['profile'] %><h2><%= @movie['title'] %></h2></div>
+<h4>Movie info</h4>
+<li><%= @movie['synopsis'] %></li>
+<h5>Cast</h5>
+<% @movie['abridged_cast'].each do |cast| %>
+<li><%= cast['name'] %></li>
+<% end %>
+<p>Directed by : </p><% @movie['abridged_directors'].each do |director| %>
+<%= director['name'] %>
+<% end %>

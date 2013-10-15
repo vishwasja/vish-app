@@ -3,7 +3,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = User.from_omniauth(request.env["omniauth.auth"])
     if user.persisted?
       flash.notice = "Signed in Through Google!"
-      sign_in_and_redirect user
+      sign_in_and_redirect home_path
     else
       session["devise.user_attributes"] = user.attributes
       flash.notice = "You are almost Done! Please provide a password to finish setting up your account"
@@ -37,10 +37,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
   
   def twitter
-      auth = request.env["omniauth.auth"]
-  user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
-  session[:user_id] = user.id
-  redirect_to root_url, :notice => "Signed in!"
+    auth = request.env["omniauth.auth"]
+    user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
+    session[:user_id] = user.id
+    redirect_to root_url, :notice => "Signed in!"
+  end
+  
+  def failure
+    render :text => "authentication failed"
   end
   
 end

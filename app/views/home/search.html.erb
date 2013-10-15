@@ -1,0 +1,7 @@
+<h2>Search results for "<%= @search_query_was %>"</h2>
+<% @results['movies'].each do |movie| %>
+  <p style="font-weight: bold"><%= link_to movie['title'],"/movie/#{movie['id']}" %>(<%= movie['year'] %>)</p>
+  <% movie['abridged_cast'].each do |cast| %>
+  <li style="list-style-type: circle"><%= cast['name'] %></li>
+  <% end %>
+<% end %>
