@@ -1,21 +1,13 @@
 !!!
 %html
   %head
-    %title Doris
+    %title Welcome
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     .login
-      - if !current_user
-        = link_to "Sign In", new_user_session_path
-        \|
-        = link_to "Register", new_user_registration_path
-        \| 
-        = link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
-        \| 
-        = link_to "Sign in with facebook", user_omniauth_authorize_path(:google_oauth2)
-      - else
+      - if current_user
         =current_user.email
         \|
         = link_to "Log out", destroy_user_session_path, method: :delete
